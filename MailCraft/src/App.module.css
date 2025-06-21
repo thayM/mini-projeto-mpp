@@ -1,11 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+*{
+   font-family: 'Silkscreen', sans-serif;
+   color: #fff;
+
+  button:focus, button:active {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+}
+
 .container__home {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  max-height: 100vh;
+  height: 100vh;
   overflow-x: hidden;
+  align-items: center;
 }
 
+/* menu */
 .header {
   width: 100%;
   background-color: #5EAF3C;
@@ -34,33 +49,34 @@
   border: none;
 }
 
+/* corpo da página */
 .container{
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 100vh;
+  width: 80vw;
 }
 
-.container__novo_email, .container__conteudo_direito{
-  min-height: 810px;
+
+.container__novo_email, .container__pre_visualizacao{
+  height: 815px;
   width: 645px;
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 30px; 
 }
 
-.novo__email_cabecalho{
+/* novo e-mail */
+.novo__email_cabecalho {
   background-color: #28680D;
-  box-shadow: 0 0px #194407;
-
-  height: 77px;
+  border-bottom: 5px solid #194407;
+  height: 81px;
   display: flex;
   align-items: center;
-  
-  .cabecalho__titulo{
-    font-size: 40px;
-    margin-left: 20px;
-  }
+}
+
+.cabecalho__titulo {
+  font-size: 40px;
+  margin-left: 20px;
 }
 
 .novo__email_conteudo{
@@ -81,16 +97,22 @@
     margin: 0;
   }
 
-  input{
+  input, textarea{
     border-radius: 0px;
     width: 585px;
     background-color: #fff;
     border: solid 3px #533926;
+    color: black;
+    box-shadow: 4px 5px #805739;
   }
 
   input:focus{
     border-color: transparent;
   }
+}
+
+.conteudo__campo_corpo textarea:focus {
+  border-color: transparent;
 }
 
 .conteudo__campo_assunto{
@@ -100,7 +122,7 @@
 }
 
 .conteudo__campo_corpo{
-  input{
+  textarea{
     height: 272px;
   }
 }
@@ -111,33 +133,47 @@
 }
 
 .anexar__arquivo_campo{
-  input[type="file"]::file-selector-button {
-    background-color: #5EAF3C;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    border-radius: 0;
-    box-shadow: 4px 5px #194407;
-  }
+  display: flex;
+  align-items: center;
 }
 
-.anexar__arquivo_aviso{
+.anexar__arquivo_label {
+  background-color: #5EAF3C;
+  color: white;
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 4px 5px #194407;
+  display: inline-block;
+  margin-top: 5px;
+  border-radius: 0;
+}
 
+.anexar__arquivo_campo{
+  input[type="file"] {
+  display: none;
+  }
+} 
+
+.anexar__arquivo_nome{
+  margin-left: 10px;
+  font-size: 12px
+}
+
+.aviso__texto{
+  font-size: 13px;
 }
 
 .btn__inserir_imagem, .btn__exportar_html, .btn__salvar_template{
   button{
-  width: 585px;
-  height: 44px;
-  background-color: #5EAF3C;
-  box-shadow: 4px 5px #194407;
-  border-radius: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 585px;
+    height: 44px;
+    background-color: #5EAF3C;
+    box-shadow: 4px 5px #194407;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -147,7 +183,57 @@
 
 .btn__conteudo{
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 160px;
+}
+
+.btn__inserir_imagem, .btn__exportar_html, .btn__salvar_template{
+  button:hover{
+    border-color: transparent;
+  }
+}
+
+.btn__inserir_imagem, .btn__exportar_html{
+  img{
+    margin-left: 5px;
+  }
+
+  .btn__conteudo{
+    width: 11vw;
+  }
+}
+
+.btn__salvar_template{
+  img{
+    margin-left: 22px;
+  }
+
+  .btn__conteudo{
+    width: 13vw;
+  }
+}
+
+/* pré-visualização */
+.container__pre_visualizacao{
+  background-color: #5EAF3C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pre__visualizacao_cabecalho{
+  width: 92%;
+  margin-top: -10px;
+  margin-bottom: 15px;
+
+  .cabecalho_titulo{
+    font-size: 40px;
+    margin: 0;
+  }
+}
+
+.pre__visualizacao_preview{
+  height: 684px;
+  width: 584px;
+  background-color: #fff;
+  border: solid 3px #898989;
 }

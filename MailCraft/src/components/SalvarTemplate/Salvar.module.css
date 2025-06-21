@@ -1,0 +1,96 @@
+.modal__salvar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #bfbfbf9a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.container__salvar {
+    padding-top: 20px;
+    padding-right: 25px;
+    padding-left: 50px;
+    background-color: white;
+    width: 480px;
+    height: 251px;
+    box-shadow: 4px 5px #6B6B6B;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal__fechar{
+    display: flex;
+    justify-content: end;
+
+    button{
+        background-color: transparent;
+        border: none;
+    }
+
+    img{
+        height: 20px;
+    }
+}
+
+.modal__cabecalho{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -20px;
+
+    h2{
+        font-size: 24px;
+        color: #28680D;
+    }
+}
+
+.campo__salvar{
+    input{
+        margin-top: 10px;
+        width: 440px;
+        height: 36px;
+        border-radius: 0;
+        border: 3px solid #B4B4B4;
+        color: black;
+        padding-left: 10px; 
+    }
+
+    input::placeholder {
+        color: black;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+}
+
+.btn__salvar{
+    margin-top: 30px;
+    margin-right: 30px;
+    display: flex;
+    justify-content: end;
+
+    button{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 140px;
+        height: 44px;
+        cursor: pointer;
+        border-radius: 0;
+        border: none;
+        background-color: #5EAF3C;
+        box-shadow: 4px 5px #194407;
+    }
+
+    p{
+        font-size: 18px;
+        color: #fff;
+    }
+}
+
+.modal__buttons button:hover {
+  border-color: transparent;
+}
