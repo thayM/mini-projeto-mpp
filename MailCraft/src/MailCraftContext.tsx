@@ -1,10 +1,12 @@
 import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
 import type { IConteudoEmail, IHtmlElement, IImportContatos } from "./core/Interfaces";
 import { BodyComponent } from "./core/Classes/Elements";
+import { HtmlStringElement } from "./core/Classes/Elements";
 import { EmailBuilder } from "./core/Classes/EmailBuider";
 import { EmailSender } from "./core/Classes/EmailSender";
 import { AdapterCsv } from "./core/Classes/AdapterCsv";
 import { AdapterXlsx } from "./core/Classes/AdapterXlsx";
+
 
 interface Contact {
   nome: string;
@@ -28,7 +30,7 @@ interface MailCraftContextType {
     assunto: string;
     corpoHtml: string;
     anexos: any[];
-  }) => void; 
+  }) => void;
   handleEnviarEmail: () => Promise<void>;
   htmlTree: IHtmlElement;
   setHtmlTree: (tree: IHtmlElement) => void;
@@ -177,20 +179,21 @@ export const MailCraftProvider: React.FC<{ children: React.ReactNode }> = ({
     []
   );
 
+
   const handleEnviarEmail = useCallback(async () => {
     if (!assunto || !corpoHtmlString || destinatarios.length === 0) {
-      alert(
-        "Preencha assunto, corpo do e-mail e adicione destinatários antes de enviar."
-      );
+      alert("Preencha assunto, corpo do e-mail e adicione destinatários antes de enviar.");
       return;
     }
 
     try {
       emailBuilder.setAssunto(assunto);
-      emailBuilder.setCorpoHtml(htmlTree);
+      emailBuilder.setCorpoHtml(new HtmlStringElement(corpoHtmlString)); // <-- aqui
       emailBuilder.setAnexos(anexosSelecionados);
 
       const emailFinal: IConteudoEmail = emailBuilder.build();
+      console.log("HTML gerado:", emailFinal.getHtml());
+
       const destinatariosEmails = destinatarios.map((c) => c.email);
       await emailSender.send(emailFinal, destinatariosEmails);
 
@@ -205,7 +208,7 @@ export const MailCraftProvider: React.FC<{ children: React.ReactNode }> = ({
     assunto,
     destinatarios,
     anexosSelecionados,
-    htmlTree,
+    corpoHtmlString,
     emailBuilder,
     emailSender,
   ]);

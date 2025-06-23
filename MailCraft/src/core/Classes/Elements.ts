@@ -56,3 +56,13 @@ export class BodyComponent implements IHtmlElement {
     return [...this.children];
   }
 }
+
+export class HtmlStringElement implements IHtmlElement {
+  private html: string;
+  constructor(html: string) {
+    this.html = html;
+  }
+  renderizar(): string {
+    return this.html;
+  }
+}
