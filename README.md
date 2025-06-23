@@ -50,7 +50,7 @@ Mail Craft é uma aplicação web desenvolvida em React para criação, personal
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/seuusuario/mail-craft.git
+   git clone https://github.com/thayM/mail-craft.git
    cd mail-craft
 
 2. **Instale as dependências:**
