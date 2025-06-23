@@ -105,6 +105,7 @@
     border: solid 3px var(--brown-dark);
     color: black;
     box-shadow: 4px 5px var(--brown-medium);
+    font-size: 23px;
   }
 
   input:focus{
