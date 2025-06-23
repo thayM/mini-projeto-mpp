@@ -9,6 +9,7 @@ import ModalSalvarTemplate from "./components/SalvarTemplate";
 import ModalConfiguracao from "./components/Configuracoes";
 import { MailCraftProvider, useMailCraft } from "./MailCraftContext";
 import { ImageElement } from "./core/Classes/Elements"; 
+import './assets/globalVar.css';
 
 const AppContent: React.FC = () => {
   const {

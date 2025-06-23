@@ -6,6 +6,7 @@ import iconArrow from '../../assets/icons/icon-arrow-right.svg';
 import iconExport from '../../assets/icons/icon-export.svg';
 import iconTrash from '../../assets/icons/icon-trash.svg';
 import { useMailCraft } from '../../MailCraftContext'; 
+import '../../assets/globalVar.css'
 
 interface ModalProps {
     onClose: () => void;

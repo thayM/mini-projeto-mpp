@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #bfbfbf9a;
+  background-color: var(--gray-background-modal);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,13 +12,11 @@
 }
 
 .container__salvar {
-    padding-top: 20px;
-    padding-right: 25px;
-    padding-left: 50px;
+    padding: 20px 25px 0 50px;
     background-color: white;
     width: 480px;
     height: 251px;
-    box-shadow: 4px 5px #6B6B6B;
+    box-shadow: 4px 5px var(--gray-dark);
     display: flex;
     flex-direction: column;
 }
@@ -44,7 +42,7 @@
 
     h2{
         font-size: 24px;
-        color: #28680D;
+        color: var(--green-medium);
     }
 }
 
@@ -54,7 +52,7 @@
         width: 440px;
         height: 36px;
         border-radius: 0;
-        border: 3px solid #B4B4B4;
+        border: 3px solid var(--gray-light);
         color: black;
         padding-left: 10px; 
     }
@@ -81,8 +79,8 @@
         cursor: pointer;
         border-radius: 0;
         border: none;
-        background-color: #5EAF3C;
-        box-shadow: 4px 5px #194407;
+        background-color: var(--green-light);
+        box-shadow: 4px 5px var(--green-dark);
     }
 
     p{

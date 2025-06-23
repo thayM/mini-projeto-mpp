@@ -3,6 +3,7 @@ import styles from "./Salvar.module.css";
 import iconArrow from "./../../assets/icons/icon-arrow-right.svg";
 import iconClose from "./../../assets/icons/icon-close.svg";
 import { useMailCraft } from "../../MailCraftContext"; 
+import '../../assets/globalVar.css'
 
 interface ModalProps {
   onClose: () => void;

@@ -1,0 +1,14 @@
+:root{
+    --green-light: #5EAF3C;
+    --green-medium: #28680D;
+    --green-dark: #194407;
+
+    --brown-light: #976D4C;
+    --brown-medium: #805739;
+    --brown-dark: #533926;
+
+    --gray-light: #B4B4B4;
+    --gray-medium: #898989;
+    --gray-dark: #6B6B6B;
+    --gray-background-modal: #bfbfbf9a;
+}
