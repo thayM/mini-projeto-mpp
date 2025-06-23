@@ -38,7 +38,7 @@ Mail Craft é uma aplicação web desenvolvida em React para criação, personal
     ├── components/           # Modais
     ├── core/
     │   ├── Classes/          # Padrões de projeto
-    │   └── Interfaces.ts       # Tipagens e contratos
+    │   └── Interfaces.ts     # Tipagens e contratos
     ├── assets/               # Imagens e ícones
     ├── App.tsx               # Componente principal
     ├── MailCraftContext.tsx  # Contexto global da aplicação
