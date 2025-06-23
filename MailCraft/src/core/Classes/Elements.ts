@@ -20,7 +20,7 @@ export class ImageElement implements IHtmlElement {
     this.alt = alt;
   }
   renderizar(): string {
-    return `<img src="${this.src}" alt="${this.alt}" />`;
+    return `<img style="width:100%" src="${this.src}" alt="${this.alt}" />`;
   }
 }
 
