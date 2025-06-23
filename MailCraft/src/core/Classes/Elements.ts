@@ -51,4 +51,8 @@ export class BodyComponent implements IHtmlElement {
   renderizar(): string {
     return this.children.map(el => el.renderizar()).join('\n');
   }
+
+  public getChildren(): IHtmlElement[] {
+    return [...this.children];
+  }
 }

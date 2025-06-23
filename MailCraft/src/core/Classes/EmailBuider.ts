@@ -1,10 +1,11 @@
 import { Email } from './Email';
-import type { IConteudoEmail } from '../Interfaces';
+import type { IConteudoEmail, IHtmlElement } from '../Interfaces';
 import { AddAnexosDecorator } from './AddAnexosDecorator';
+import { BodyComponent } from './Elements';
 
 export class EmailBuilder {
     private assunto = '';
-    private html = '';
+    private html: IHtmlElement | null = null;
     private anexos: File[] = [];
 
     setAssunto(assunto: string) {
@@ -12,7 +13,7 @@ export class EmailBuilder {
         return this;
     }
 
-    setCorpoHtml(html: string) {
+    setCorpoHtml(html: IHtmlElement) {
         this.html = html;
         return this;
     }
@@ -23,7 +24,10 @@ export class EmailBuilder {
     }
 
     build(): IConteudoEmail {
-        const baseEmail = new Email(this.assunto, this.html);
+        const corpoHtmlFinal = this.html || new BodyComponent(); 
+
+        const baseEmail = new Email(this.assunto, corpoHtmlFinal); 
+
         if (this.anexos.length > 0) {
             return new AddAnexosDecorator(baseEmail, this.anexos);
         }

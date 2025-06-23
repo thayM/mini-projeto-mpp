@@ -5,7 +5,7 @@ export interface IConteudoEmail {
 }
 
 export interface IImportContatos {
-    importar(file: File): Promise<{ nome: string; email: string }[]>;
+    importar(fileContent: string | ArrayBuffer): Promise<{ nome: string; email: string }[]>;
 }
 
 export interface IHtmlElement {

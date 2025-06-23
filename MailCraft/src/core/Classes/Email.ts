@@ -1,11 +1,11 @@
-import type { IConteudoEmail } from '../Interfaces';
+import type { IConteudoEmail, IHtmlElement } from '../Interfaces';
 
 export class Email implements IConteudoEmail {
     private assunto: string;
-    private html: string;
+    private html: IHtmlElement; 
     private anexos: File[];
 
-    constructor(assunto: string, html: string, anexos: File[] = []) {
+    constructor(assunto: string, html: IHtmlElement, anexos: File[] = []) {
         this.assunto = assunto;
         this.html = html;
         this.anexos = anexos;
@@ -16,7 +16,7 @@ export class Email implements IConteudoEmail {
     }
 
     getHtml(): string {
-        return this.html;
+        return this.html.renderizar();
     }
 
     getAnexos(): File[] {
@@ -28,6 +28,6 @@ export class Email implements IConteudoEmail {
     }
 
     toString(): string {
-        return `Assunto: ${this.assunto}\nHTML: ${this.html}`;
+        return `Assunto: ${this.assunto}\nHTML:\n${this.getHtml()}`;
     }
 }
