@@ -7,7 +7,6 @@ import { EmailSender } from "./core/Classes/EmailSender";
 import { AdapterCsv } from "./core/Classes/AdapterCsv";
 import { AdapterXlsx } from "./core/Classes/AdapterXlsx";
 
-
 interface Contact {
   nome: string;
   email: string;
@@ -56,6 +55,15 @@ export const MailCraftProvider: React.FC<{ children: React.ReactNode }> = ({
   const [htmlTree, setHtmlTree] = useState<IHtmlElement>(
     () => new BodyComponent()
   );
+
+  React.useEffect(() => {
+    if (htmlTree.renderizar() !== corpoHtmlString) {
+      if (htmlTree instanceof HtmlStringElement && htmlTree.renderizar() === corpoHtmlString) {
+        return; 
+      }
+      setHtmlTree(new HtmlStringElement(corpoHtmlString));
+    }
+  }, [corpoHtmlString, htmlTree]);
 
   React.useEffect(() => {
     const renderedHtml = htmlTree.renderizar();
@@ -117,15 +125,21 @@ export const MailCraftProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const addHtmlElementToBody = useCallback(
     (element: IHtmlElement) => {
-      const newHtmlTree = new BodyComponent();
-      if (htmlTree instanceof BodyComponent) {
-        htmlTree.getChildren().forEach((child) => newHtmlTree.add(child));
-      }
+      setHtmlTree((prevHtmlTree) => {
+        const newHtmlTree = new BodyComponent();
+        if (prevHtmlTree instanceof HtmlStringElement) {
+          if (prevHtmlTree.renderizar().trim() !== "") {
+            newHtmlTree.add(new HtmlStringElement(prevHtmlTree.renderizar()));
+          }
+        } else if (prevHtmlTree instanceof BodyComponent) {
+          prevHtmlTree.getChildren().forEach((child) => newHtmlTree.add(child));
+        }
 
-      newHtmlTree.add(element);
-      setHtmlTree(newHtmlTree);
+        newHtmlTree.add(element);
+        return newHtmlTree;
+      });
     },
-    [htmlTree]
+    []
   );
 
   const handleSalvarTemplate = useCallback(
@@ -167,18 +181,12 @@ export const MailCraftProvider: React.FC<{ children: React.ReactNode }> = ({
     }) => {
       setAssunto(template.assunto);
       setCorpoHtmlString(template.corpoHtml);
-
+      setHtmlTree(new HtmlStringElement(template.corpoHtml));
       setAnexosSelecionados([]);
-      if (template.anexos && template.anexos.length > 0) {
-        // Se você salvou o File completo, pode tentar recriá-lo (mas não é ideal no localStorage)
-        // setAnexosSelecionados(template.anexos.map(a => new File([], a.name, { type: a.type })));
-      }
-
       alert(`Template "${template.name}" carregado!`);
     },
     []
   );
-
 
   const handleEnviarEmail = useCallback(async () => {
     if (!assunto || !corpoHtmlString || destinatarios.length === 0) {
@@ -188,7 +196,7 @@ export const MailCraftProvider: React.FC<{ children: React.ReactNode }> = ({
 
     try {
       emailBuilder.setAssunto(assunto);
-      emailBuilder.setCorpoHtml(new HtmlStringElement(corpoHtmlString)); // <-- aqui
+      emailBuilder.setCorpoHtml(htmlTree);
       emailBuilder.setAnexos(anexosSelecionados);
 
       const emailFinal: IConteudoEmail = emailBuilder.build();
@@ -199,7 +207,7 @@ export const MailCraftProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setAssunto("");
       setCorpoHtmlString("");
-      setHtmlTree(new BodyComponent());
+      setHtmlTree(new HtmlStringElement(""));
       setAnexosSelecionados([]);
     } catch (error) {
       console.error("Falha ao enviar e-mail:", error);
@@ -208,7 +216,7 @@ export const MailCraftProvider: React.FC<{ children: React.ReactNode }> = ({
     assunto,
     destinatarios,
     anexosSelecionados,
-    corpoHtmlString,
+    htmlTree,
     emailBuilder,
     emailSender,
   ]);

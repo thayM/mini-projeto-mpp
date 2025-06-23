@@ -31,12 +31,6 @@ const AppContent: React.FC = () => {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.value = corpoHtmlString;
-    }
-  }, [corpoHtmlString]);
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -51,7 +45,8 @@ const AppContent: React.FC = () => {
     const imageUrl = prompt("Insira a URL da imagem:");
     if (imageUrl) {
       const newImageElement = new ImageElement(imageUrl);
-      addHtmlElementToBody(newImageElement);
+      const imageHtml = newImageElement.renderizar();
+      setCorpoHtmlString(corpoHtmlString + "\n" + imageHtml);
     }
   };
 
