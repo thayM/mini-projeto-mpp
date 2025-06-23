@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./App.module.css";
 import logo from "./assets/icons/Logo_MailCraft.svg";
 import iconModal from "./assets/icons/icon-configuracao.svg";
@@ -18,7 +18,6 @@ const AppContent: React.FC = () => {
     setCorpoHtmlString,
     anexosSelecionados,
     addAnexo, 
-    addHtmlElementToBody, 
     emailPrevia,
   } = useMailCraft();
 
