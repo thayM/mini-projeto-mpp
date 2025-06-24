@@ -125,7 +125,8 @@
 
 .conteudo__campo_corpo{
   textarea{
-    height: 272px;
+    max-height: 272px;
+    max-width: 585px;
     font-family: 'Inconsolata', monospace;
   }
 }
